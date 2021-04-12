@@ -1,0 +1,7 @@
+{
+  "name": "pokescan",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
