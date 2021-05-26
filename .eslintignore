@@ -18,3 +18,4 @@ ios
 android
 www
 target
+./src/app/graphql/generated/*
