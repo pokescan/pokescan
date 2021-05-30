@@ -28,22 +28,14 @@ export abstract class AbstractService<C, E> {
     });
   }
 
-  create(
-    body: C
-  ): Observable<
-    FetchResult<Mutation, Record<string, any>, Record<string, any>>
-  > {
+  create(body: C): Observable<FetchResult<Mutation>> {
     return this.apollo.mutate<Mutation>({
       mutation: this.createQuery(),
       variables: { ...body }
     });
   }
 
-  edit(
-    body: E
-  ): Observable<
-    FetchResult<Mutation, Record<string, any>, Record<string, any>>
-  > {
+  edit(body: E): Observable<FetchResult<Mutation>> {
     return this.apollo.mutate<Mutation>({
       mutation: this.updateQuery(),
       variables: {
@@ -52,11 +44,7 @@ export abstract class AbstractService<C, E> {
     });
   }
 
-  remove(
-    id: string
-  ): Observable<
-    FetchResult<Mutation, Record<string, any>, Record<string, any>>
-  > {
+  remove(id: string): Observable<FetchResult<Mutation>> {
     return this.apollo.mutate<Mutation>({
       mutation: this.deleteQuery(),
       variables: {
