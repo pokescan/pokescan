@@ -1,7 +1,7 @@
 overwrite: true
 schema: 'https://pokescan-api.herokuapp.com/graphql'
 generates:
-  src/app/graphql/generated/index.ts:
+  src/app/core/graphql/generated/index.ts:
     plugins:
       - 'typescript'
       - 'typescript-operations'
