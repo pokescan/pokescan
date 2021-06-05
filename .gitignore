@@ -30,5 +30,5 @@ npm-debug.log*
 /www
 /target
 
-./graphql.schema.json
-./src/app/core/graphql/generated/index.ts
+graphql.schema.json
+src/app/core/graphql/generated/index.ts
