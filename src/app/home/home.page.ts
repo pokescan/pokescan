@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { AbilityService } from '../core/services/ability/ability.service';
 
 @Component({
   selector: 'app-home',
@@ -7,5 +6,5 @@ import { AbilityService } from '../core/services/ability/ability.service';
   styleUrls: ['home.page.scss']
 })
 export class HomePage {
-  constructor(private abilityService: AbilityService) {}
+  constructor() {}
 }

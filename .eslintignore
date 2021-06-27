@@ -18,4 +18,4 @@ ios
 android
 www
 target
-./src/app/graphql/generated/*
+/src/app/core/graphql/generated/index.ts
