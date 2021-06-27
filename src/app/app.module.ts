@@ -14,7 +14,7 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 
 export const HttpLoaderFactory = (http: HttpClient): TranslateHttpLoader =>
-  new TranslateHttpLoader(http, '../assets/i18n/', '.json');
+  new TranslateHttpLoader(http);
 
 @NgModule({
   declarations: [AppComponent],
