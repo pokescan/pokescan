@@ -32,3 +32,5 @@ npm-debug.log*
 
 graphql.schema.json
 src/app/core/graphql/generated/index.ts
+.env*
+launch.sh
