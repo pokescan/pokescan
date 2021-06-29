@@ -16,7 +16,7 @@
     "test:ci": "jest --runInBand --coverage",
     "lint": "eslint . --ext .ts,.html --color",
     "lint:styles": "stylelint \"src/**/*.scss\" --fix",
-    "prepare": "graphql-codegen --config codegen.yml"
+    "prepare": "graphql-codegen --config codegen.yml && husky install"
   },
   "private": true,
   "dependencies": {
