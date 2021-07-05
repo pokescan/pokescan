@@ -1,9 +1,40 @@
-<ion-header>
+<ion-header class="ion-no-border" [translucent]="true">
   <ion-toolbar>
-    <ion-title>pokedex</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button
+        defaultHref="/tabs/home"
+        [text]="'BACK_BUTTON' | translate"
+      ></ion-back-button>
+    </ion-buttons>
+    <ion-toolbar>
+      <ion-title color="primary" translate>POKEDEX</ion-title>
+    </ion-toolbar>
+    <ion-buttons slot="end">
+      <ion-button (click)="openFilters();">
+        <ion-icon slot="icon-only" name="filter-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content [fullscreen]="true">
+  <ng-container
+    *ngIf="loaders.pokemons.inProgress$ | async; then loadingBlock; else pokemonsBlock;"
+  ></ng-container>
 
+  <ng-template #loadingBlock>
+    <pks-spinner></pks-spinner>
+  </ng-template>
+
+  <ng-template #pokemonsBlock>
+    <ion-grid>
+      <ion-row size="3">
+        <ion-col *ngFor="let pokemon of pokemons">
+          <cl-image
+            [public-id]="getPokemonImageUrl(pokemon.pokedexId)"
+          ></cl-image>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ng-template>
 </ion-content>

@@ -18,7 +18,7 @@ export class PokemonService extends AbstractService<
   protected findAllQuery(): DocumentNode {
     return gql`
       query($offset: Int = 0, $limit: Int = 10) {
-        pokemons: findAllPokemons(offset: $offset, limit: $limit) {
+        findAllPokemons(offset: $offset, limit: $limit) {
           items {
             id
             pokedexId

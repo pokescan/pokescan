@@ -10,6 +10,7 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { Cloudinary } from 'cloudinary-core';
+import { NgxSpinnerModule } from 'ngx-spinner';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
@@ -40,7 +41,8 @@ export const HttpLoaderFactory = (http: HttpClient): TranslateHttpLoader =>
         deps: [HttpClient]
       },
       defaultLanguage: 'en'
-    })
+    }),
+    NgxSpinnerModule
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent]

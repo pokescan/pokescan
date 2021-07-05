@@ -65,10 +65,10 @@ module.exports = {
           }
         ],
         '@angular-eslint/component-selector': [
-          'error',
+          'warning',
           {
             type: 'element',
-            prefix: 'app',
+            prefix: 'pks',
             style: 'kebab-case'
           }
         ],
