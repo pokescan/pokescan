@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { HOME_CARDS } from './shared/constants';
-import { IHomeCard } from './shared/interfaces/home.interface';
+import { IHomeCard } from './shared/interfaces';
 
 @Component({
   selector: 'app-home',

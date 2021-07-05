@@ -1,4 +1,4 @@
-import { IHomeCard } from '../interfaces/home.interface';
+import { IHomeCard } from '../interfaces';
 
 export const HOME_CARDS: IHomeCard[] = [
   {
