@@ -11,5 +11,16 @@
     </ion-toolbar>
   </ion-header>
 
-  <div id="container"></div>
+  <ion-grid>
+    <ion-row>
+      <ion-col *ngFor="let card of homeCards">
+        <ion-card [ngStyle]="{'background-color': card.color}">
+          <ion-card-header>
+            <ion-card-title translate>{{ card.label }}</ion-card-title>
+          </ion-card-header>
+          <ion-card-content> </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
