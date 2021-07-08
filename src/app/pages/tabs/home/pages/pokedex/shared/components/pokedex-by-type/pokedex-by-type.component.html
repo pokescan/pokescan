@@ -1,0 +1,18 @@
+<ion-grid [fixed]="true">
+  <ng-container *ngFor="let type of pokemonTypes.findAllPokemonTypes.items">
+    <ion-row>
+      <ion-text>
+        <h2>
+          {{ type.name | languageTranslate | uppercase }}
+        </h2>
+      </ion-text>
+    </ion-row>
+    <ion-row>
+      <ion-col *ngFor="let pokemon of type.pokemons" size="3">
+        <cl-image
+          [public-id]="getPokemonImageUrl(pokemon.pokedexId)"
+        ></cl-image>
+      </ion-col>
+    </ion-row>
+  </ng-container>
+</ion-grid>

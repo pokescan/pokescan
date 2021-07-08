@@ -1,3 +1,15 @@
 {
-  "HOME": "Home"
+  "HOME": "Home",
+  "BUTTONS": {
+    "BACK": "Back",
+    "CLOSE": "Close"
+  },
+  "GENERATION": {
+    "MAIN": "Generation",
+    "VARIABILIZED": "Generation {{order}}"
+  },
+  "TITLES": {
+    "POKEDEX": "Pokedex"
+  },
+  "TYPE": "Type"
 }

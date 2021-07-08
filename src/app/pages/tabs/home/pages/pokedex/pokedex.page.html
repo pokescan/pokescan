@@ -3,11 +3,11 @@
     <ion-buttons slot="start">
       <ion-back-button
         defaultHref="/tabs/home"
-        [text]="'BACK_BUTTON' | translate"
+        [text]="'BUTTONS.BACK' | translate"
       ></ion-back-button>
     </ion-buttons>
     <ion-toolbar>
-      <ion-title color="primary" translate>POKEDEX</ion-title>
+      <ion-title color="primary" translate>TITLES.POKEDEX</ion-title>
     </ion-toolbar>
     <ion-buttons slot="end">
       <ion-button (click)="openFilters();">
@@ -27,14 +27,21 @@
   </ng-template>
 
   <ng-template #pokemonsBlock>
-    <ion-grid>
-      <ion-row size="3">
-        <ion-col *ngFor="let pokemon of pokemons">
-          <cl-image
-            [public-id]="getPokemonImageUrl(pokemon.pokedexId)"
-          ></cl-image>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
+    <ng-container [ngSwitch]="filterChoice">
+      <app-pokedex-by-generation
+        *ngSwitchCase="'generation'"
+        [generations]="data"
+      ></app-pokedex-by-generation>
+
+      <app-pokedex-by-pokemon
+        *ngSwitchCase="'pokemon'"
+        [pokemons]="data"
+      ></app-pokedex-by-pokemon>
+
+      <app-pokedex-by-type
+        *ngSwitchCase="'type'"
+        [pokemonTypes]="data"
+      ></app-pokedex-by-type>
+    </ng-container>
   </ng-template>
 </ion-content>
