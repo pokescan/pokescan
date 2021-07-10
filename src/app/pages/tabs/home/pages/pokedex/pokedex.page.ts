@@ -5,7 +5,6 @@ import { GenerationService } from '@core/services/generation/generation.service'
 import { PokemonTypeService } from '@core/services/pokemon-type/pokemon-type.service';
 import { PokemonService } from '@core/services/pokemon/pokemon.service';
 import { IonRouterOutlet } from '@ionic/angular';
-import { loadingFor } from '@ngneat/loadoff';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { ModalService } from '@shared/services/modal/modal.service';
 import { Observable } from 'rxjs';
@@ -25,8 +24,6 @@ export class PokedexPage implements OnInit {
   readonly DEFAULT_FILTER_CHOICE: string = PokedexFilterEnum.POKEMON;
 
   filterChoice: string = this.DEFAULT_FILTER_CHOICE;
-
-  loaders = loadingFor('pokemons');
 
   /**
    * Variable that contains all the pokemons from the API
@@ -58,11 +55,9 @@ export class PokedexPage implements OnInit {
       ApolloQueryResult<Query>
     > = this.routeBySelectedChoice();
 
-    routeToCall
-      .pipe(untilDestroyed(this), this.loaders.pokemons.track())
-      .subscribe(({ data }) => {
-        this.data = data;
-      });
+    routeToCall.pipe(untilDestroyed(this)).subscribe(({ data }) => {
+      this.data = data;
+    });
   }
 
   private routeBySelectedChoice(): Observable<ApolloQueryResult<Query>> {

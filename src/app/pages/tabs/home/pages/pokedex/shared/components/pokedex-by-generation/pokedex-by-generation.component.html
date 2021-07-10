@@ -1,11 +1,13 @@
 <ion-grid [fixed]="true">
-  <ng-container *ngFor="let generation of generations.findAllGenerations.items">
+  <ng-container
+    *ngFor="let generation of generations?.findAllGenerations?.items"
+  >
     <ion-row>
       <ion-col>
         <ion-text>
           <h2
             translate
-            [translateParams]="{ order: generation.order }"
+            [translateParams]="{ order: generation?.order }"
             class="ion-no-margin"
           >
             GENERATION.VARIABILIZE
@@ -15,7 +17,7 @@
     </ion-row>
     <hr />
     <ion-row>
-      <ion-col *ngFor="let pokemon of generation.pokemons" size="3">
+      <ion-col *ngFor="let pokemon of generation?.pokemons" size="3">
         <cl-image
           [public-id]="getPokemonImageUrl(pokemon.pokedexId)"
         ></cl-image>

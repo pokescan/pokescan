@@ -8,8 +8,8 @@
   </ion-row>
   <hr />
   <ion-row>
-    <ion-col *ngFor="let pokemon of pokemons.findAllPokemons.items" size="3">
-      <cl-image [public-id]="getPokemonImageUrl(pokemon.pokedexId)"></cl-image>
+    <ion-col *ngFor="let pokemon of pokemons?.findAllPokemons?.items" size="3">
+      <cl-image [public-id]="getPokemonImageUrl(pokemon?.pokedexId)"></cl-image>
     </ion-col>
   </ion-row>
 </ion-grid>

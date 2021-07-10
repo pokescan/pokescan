@@ -18,30 +18,20 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ng-container
-    *ngIf="loaders.pokemons.inProgress$ | async; then loadingBlock; else pokemonsBlock;"
-  ></ng-container>
+  <ng-container [ngSwitch]="filterChoice">
+    <app-pokedex-by-generation
+      *ngSwitchCase="'generation'"
+      [generations]="data"
+    ></app-pokedex-by-generation>
 
-  <ng-template #loadingBlock>
-    <pks-spinner></pks-spinner>
-  </ng-template>
+    <app-pokedex-by-pokemon
+      *ngSwitchCase="'pokemon'"
+      [pokemons]="data"
+    ></app-pokedex-by-pokemon>
 
-  <ng-template #pokemonsBlock>
-    <ng-container [ngSwitch]="filterChoice">
-      <app-pokedex-by-generation
-        *ngSwitchCase="'generation'"
-        [generations]="data"
-      ></app-pokedex-by-generation>
-
-      <app-pokedex-by-pokemon
-        *ngSwitchCase="'pokemon'"
-        [pokemons]="data"
-      ></app-pokedex-by-pokemon>
-
-      <app-pokedex-by-type
-        *ngSwitchCase="'type'"
-        [pokemonTypes]="data"
-      ></app-pokedex-by-type>
-    </ng-container>
-  </ng-template>
+    <app-pokedex-by-type
+      *ngSwitchCase="'type'"
+      [pokemonTypes]="data"
+    ></app-pokedex-by-type>
+  </ng-container>
 </ion-content>
