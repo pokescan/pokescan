@@ -1,13 +1,13 @@
 {
-	"appId": "io.ionic.starter",
-	"appName": "pokescan",
-	"bundledWebRuntime": false,
-	"npmClient": "npm",
-	"webDir": "www",
-	"plugins": {
-		"SplashScreen": {
-			"launchShowDuration": 0
-		}
-	},
-	"cordova": {}
+  "appId": "fr.pokescan",
+  "appName": "pokescan",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "www",
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 0
+    }
+  },
+  "cordova": {}
 }

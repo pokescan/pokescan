@@ -1,5 +1,5 @@
 {
-  "appId": "io.ionic.starter",
+  "appId": "fr.pokescan",
   "appName": "pokescan",
   "bundledWebRuntime": false,
   "npmClient": "npm",
