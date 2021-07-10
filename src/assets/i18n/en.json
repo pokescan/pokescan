@@ -8,6 +8,12 @@
     "MAIN": "Generation",
     "VARIABILIZED": "Generation {{order}}"
   },
+  "LOADING": "Loading in progress...",
+  "MODAL": {
+    "FILTER": "Filters"
+  },
+  "POKEMON": "Pokemon",
+  "POKEMONS": "Pokemons",
   "TITLES": {
     "POKEDEX": "Pokedex"
   },

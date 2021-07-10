@@ -25,6 +25,14 @@ export class PokedexFilterComponent {
   @Input() choices: IFilterChoice[];
 
   /**
+   * Default choice for the filter
+   *
+   * @type {string}
+   * @memberof PokedexFilterComponent
+   */
+  @Input() defaultChoice: string;
+
+  /**
    * Constructor
    * @param modalController
    */

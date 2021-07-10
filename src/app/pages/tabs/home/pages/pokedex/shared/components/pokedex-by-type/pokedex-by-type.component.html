@@ -1,12 +1,15 @@
 <ion-grid [fixed]="true">
   <ng-container *ngFor="let type of pokemonTypes.findAllPokemonTypes.items">
     <ion-row>
-      <ion-text>
-        <h2>
-          {{ type.name | languageTranslate | uppercase }}
-        </h2>
-      </ion-text>
+      <ion-col>
+        <ion-text>
+          <h2 class="ion-no-margin">
+            {{ type.name | languageTranslate | titlecase }}
+          </h2>
+        </ion-text>
+      </ion-col>
     </ion-row>
+    <hr />
     <ion-row>
       <ion-col *ngFor="let pokemon of type.pokemons" size="3">
         <cl-image

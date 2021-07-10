@@ -84,14 +84,6 @@ export class PokedexPage implements OnInit {
   async openFilters(): Promise<void> {
     const defaultChoices = [...POKEDEX_DISPLAY_CHOICES];
 
-    const index = defaultChoices.findIndex(c => c.value === this.filterChoice);
-
-    const choice = defaultChoices[index];
-
-    choice.isSelected = true;
-
-    defaultChoices.splice(index, 1, choice);
-
     const { selectedChoice }: IFilterOutput =
       (await this.modalService.openSwipeableModal<
         IFilterChoiceWrapper,
@@ -101,7 +93,8 @@ export class PokedexPage implements OnInit {
         this.routerOutlet.parentOutlet.nativeEl,
         'MODAL.FILTER',
         {
-          choices: POKEDEX_DISPLAY_CHOICES
+          choices: POKEDEX_DISPLAY_CHOICES,
+          defaultChoice: this.filterChoice
         }
       )) || ({} as IFilterOutput);
 

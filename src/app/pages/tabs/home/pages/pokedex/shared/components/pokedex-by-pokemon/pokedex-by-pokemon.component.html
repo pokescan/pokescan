@@ -1,5 +1,13 @@
 <ion-grid>
   <ion-row>
+    <ion-col>
+      <ion-text>
+        <h2 translate class="ion-no-margin">POKEMONS</h2>
+      </ion-text>
+    </ion-col>
+  </ion-row>
+  <hr />
+  <ion-row>
     <ion-col *ngFor="let pokemon of pokemons.findAllPokemons.items" size="3">
       <cl-image [public-id]="getPokemonImageUrl(pokemon.pokedexId)"></cl-image>
     </ion-col>
