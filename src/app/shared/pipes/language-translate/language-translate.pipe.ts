@@ -15,8 +15,8 @@ export class LanguageTranslatePipe implements PipeTransform {
     const language = this.translateService.currentLang;
     const defaultLanguage = this.translateService.defaultLang;
 
-    const v = values.find(to => language === to?.key);
-    const defaultValue = values.find(to => defaultLanguage === to?.key);
+    const v = values?.find(to => language === to?.key);
+    const defaultValue = values?.find(to => defaultLanguage === to?.key);
 
     return v?.value || defaultValue?.value || 'NO CORRESPONDING VALUE';
   }

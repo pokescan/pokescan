@@ -8,7 +8,11 @@
   </ion-row>
   <hr />
   <ion-row>
-    <ion-col *ngFor="let pokemon of pokemons?.findAllPokemons?.items" size="3">
+    <ion-col
+      *ngFor="let pokemon of pokemons?.findAllPokemons?.items"
+      size="3"
+      [routerLink]="['/', 'pokemon-tabs', 'pokemon-detail', pokemon.id]"
+    >
       <cl-image [public-id]="getPokemonImageUrl(pokemon?.pokedexId)"></cl-image>
     </ion-col>
   </ion-row>
