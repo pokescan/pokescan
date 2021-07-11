@@ -25,10 +25,6 @@ export class PokemonDetailPage implements OnInit {
       .find(pokemonId)
       .pipe(untilDestroyed(this))
       .subscribe(({ data: { pokemon } }) => {
-        console.log(
-          '🚀 ~ file: pokemon-detail.page.ts ~ line 28 ~ PokemonDetailPage ~ .subscribe ~ pokemon',
-          pokemon
-        );
         this.pokemon = pokemon;
       });
   }
