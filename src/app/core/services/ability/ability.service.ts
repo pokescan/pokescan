@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
+import { CreateAbilityDto, UpdateAbilityDto } from '@core/graphql/generated';
+import { AbstractService } from '@shared/services/abstract/abstract.service';
 import { Apollo, gql } from 'apollo-angular';
 import { DocumentNode } from 'graphql';
-import { AbstractService } from '../../../shared/services/abstract/abstract.service';
-import { CreateAbilityDto, UpdateAbilityDto } from '../../graphql/generated';
 
 @Injectable({
   providedIn: 'root'

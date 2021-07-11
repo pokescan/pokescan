@@ -1,0 +1,31 @@
+<ion-grid [fixed]="true">
+  <ng-container
+    *ngFor="let generation of generations?.findAllGenerations?.items"
+  >
+    <ion-row>
+      <ion-col>
+        <ion-text>
+          <h2
+            translate
+            [translateParams]="{ order: generation?.order }"
+            class="ion-no-margin"
+          >
+            GENERATION.VARIABILIZE
+          </h2>
+        </ion-text>
+      </ion-col>
+    </ion-row>
+    <hr />
+    <ion-row>
+      <ion-col
+        *ngFor="let pokemon of generation?.pokemons"
+        size="3"
+        [routerLink]="['/', 'pokemon-tabs', 'pokemon-detail', pokemon.id]"
+      >
+        <cl-image
+          [public-id]="getPokemonImageUrl(pokemon.pokedexId)"
+        ></cl-image>
+      </ion-col>
+    </ion-row>
+  </ng-container>
+</ion-grid>

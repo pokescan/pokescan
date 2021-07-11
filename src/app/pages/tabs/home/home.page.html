@@ -14,7 +14,10 @@
   <ion-grid>
     <ion-row>
       <ion-col *ngFor="let card of homeCards">
-        <ion-card [ngStyle]="{'background-color': card.color}">
+        <ion-card
+          [ngStyle]="{'background-color': card.color}"
+          [routerLink]="[card.url]"
+        >
           <ion-card-header>
             <ion-card-title translate>{{ card.label }}</ion-card-title>
           </ion-card-header>
