@@ -65,7 +65,7 @@ module.exports = {
           }
         ],
         '@angular-eslint/component-selector': [
-          'warning',
+          'warn',
           {
             type: 'element',
             prefix: 'pks',
