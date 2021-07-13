@@ -1,17 +1,31 @@
-<ion-header class="ion-no-border" [translucent]="true">
+<ion-header class="ion-no-border" translucent="true">
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-back-button
-        defaultHref="/tabs/home"
+        defaultHref="/tabs/home/pokedex"
         [text]="'BUTTONS.BACK' | translate"
       ></ion-back-button>
     </ion-buttons>
-    <ion-toolbar>
-      <ion-title color="primary"
-        >{{pokemon?.name | languageTranslate | titlecase}}</ion-title
-      >
-    </ion-toolbar>
+    <ion-title>{{pokemon?.name | languageTranslate | titlecase}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content> </ion-content>
+<ion-content fullscreen="true">
+  <ng-container *ngIf="pokemon">
+    <section
+      class="pokemon-header"
+      [ngClass]="getClassAccordingToPokemonType()"
+    >
+      <!-- Header with image, pokedex number, and pokemon name -->
+      <div class="ion-text-center">
+        <cl-image
+          [public-id]="getPokemonImageUrl(pokemon.pokedexId)"
+        ></cl-image>
+      </div>
+
+      <ion-text>
+        <h1>{{pokemon.name | languageTranslate}}</h1>
+      </ion-text>
+    </section>
+  </ng-container>
+</ion-content>

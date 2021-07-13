@@ -1,10 +1,10 @@
 import { Component, Input } from '@angular/core';
 import { Cloudinary } from '@cloudinary/angular-5.x';
 import { Query } from '@core/graphql/generated';
-import { PokemonDisplayCommon } from '../../utils/pokemon-common';
+import { PokemonDisplayCommon } from '../../../../../../../../shared/utils/pokemon-common';
 
 @Component({
-  selector: 'app-pokedex-by-pokemon',
+  selector: 'pks-pokedex-by-pokemon',
   templateUrl: './pokedex-by-pokemon.component.html',
   styleUrls: ['./pokedex-by-pokemon.component.scss']
 })

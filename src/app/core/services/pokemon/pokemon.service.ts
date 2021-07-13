@@ -92,6 +92,12 @@ export class PokemonService extends AbstractService<
             key
             value
           }
+          pokemonTypes {
+            name {
+              key
+              value
+            }
+          }
           abilities {
             name {
               key

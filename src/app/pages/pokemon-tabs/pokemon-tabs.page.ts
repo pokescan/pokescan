@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-pokemon-tabs',
+  selector: 'pks-pokemon-tabs',
   templateUrl: './pokemon-tabs.page.html',
   styleUrls: ['./pokemon-tabs.page.scss']
 })
