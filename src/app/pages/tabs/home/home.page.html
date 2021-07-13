@@ -13,13 +13,62 @@
 
   <ion-grid>
     <ion-row>
-      <ion-col *ngFor="let card of homeCards">
-        <ion-card [ngStyle]="{'background-color': card.color}">
-          <ion-card-header>
-            <ion-card-title translate>{{ card.label }}</ion-card-title>
-          </ion-card-header>
-          <ion-card-content> </ion-card-content>
-        </ion-card>
+      <ion-col
+        ><div class="card card-pokedex"><strong>Pokédex</strong></div></ion-col
+      >
+    </ion-row>
+    <ion-row>
+      <ion-col size="6">
+        <div class="card card-abilities">
+          <ion-icon name="battle-costum"></ion-icon> <strong>Attaques</strong>
+        </div>
+      </ion-col>
+      <ion-col size="6">
+        <ion-grid class="grid-costum-top">
+          <ion-row
+            ><ion-col style="padding: 0 0 5px 0"
+              ><div class="card-layout card-layout-ct">
+                <ion-icon name="cd-costum"></ion-icon>
+                <strong>CT</strong>
+              </div></ion-col
+            ></ion-row
+          >
+          <ion-row
+            ><ion-col style="padding: 5px 0 0 0"
+              ><div class="card-layout card-layout-talents">
+                <ion-icon name="stars-costum"></ion-icon>
+                <strong>Talents</strong>
+              </div>
+            </ion-col></ion-row
+          >
+        </ion-grid>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="6">
+        <div class="card card-team">
+          <ion-icon name="team-costum"></ion-icon> <strong>Équipes</strong>
+        </div>
+      </ion-col>
+      <ion-col size="6">
+        <ion-grid class="grid-costum-bottom">
+          <ion-row
+            ><ion-col style="padding: 0 0 5px 0"
+              ><div class="card-layout card-layout-nature">
+                <ion-icon name="natures-costum"></ion-icon>
+                <strong>Natures</strong>
+              </div>
+            </ion-col></ion-row
+          >
+          <ion-row
+            ><ion-col style="padding: 5px 0 0 0"
+              ><div class="card-layout card-layout-location">
+                <ion-icon name="location-costum"></ion-icon>
+                <strong>Lieux</strong>
+              </div></ion-col
+            ></ion-row
+          >
+        </ion-grid>
       </ion-col>
     </ion-row>
   </ion-grid>
