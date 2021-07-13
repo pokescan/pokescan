@@ -19,19 +19,19 @@
 
 <ion-content [fullscreen]="true">
   <ng-container [ngSwitch]="filterChoice">
-    <app-pokedex-by-generation
+    <pks-pokedex-by-generation
       *ngSwitchCase="'generation'"
       [generations]="data"
-    ></app-pokedex-by-generation>
+    ></pks-pokedex-by-generation>
 
-    <app-pokedex-by-pokemon
+    <pks-pokedex-by-pokemon
       *ngSwitchCase="'pokemon'"
       [pokemons]="data"
-    ></app-pokedex-by-pokemon>
+    ></pks-pokedex-by-pokemon>
 
-    <app-pokedex-by-type
+    <pks-pokedex-by-type
       *ngSwitchCase="'type'"
       [pokemonTypes]="data"
-    ></app-pokedex-by-type>
+    ></pks-pokedex-by-type>
   </ng-container>
 </ion-content>

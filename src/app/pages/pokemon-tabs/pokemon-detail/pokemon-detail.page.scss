@@ -1,0 +1,8 @@
+ion-toolbar {
+  --background: transparent;
+  --ion-color-base: transparent !important;
+}
+
+.pokemon-header {
+  background: linear-gradient(var(--ion-color-base), #fff);
+}
