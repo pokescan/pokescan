@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Cloudinary } from '@cloudinary/angular-5.x';
 import { Query } from '@core/graphql/generated';
 import { PokemonDisplayCommon } from '../../utils/pokemon-common';
 
@@ -9,4 +10,12 @@ import { PokemonDisplayCommon } from '../../utils/pokemon-common';
 })
 export class PokedexByPokemonComponent extends PokemonDisplayCommon {
   @Input() pokemons: Query;
+
+  constructor(private cloudinary: Cloudinary) {
+    super();
+  }
+
+  createPokemonImageUrl(pokedexId: string): string {
+    return this.cloudinary.cloudinaryInstance.url(`pokemon/${pokedexId}.gif`);
+  }
 }

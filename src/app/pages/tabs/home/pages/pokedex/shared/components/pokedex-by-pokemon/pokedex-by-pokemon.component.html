@@ -1,4 +1,4 @@
-<ion-grid>
+<!-- <ion-grid>
   <ion-row>
     <ion-col>
       <ion-text>
@@ -16,4 +16,32 @@
       <cl-image [public-id]="getPokemonImageUrl(pokemon?.pokedexId)"></cl-image>
     </ion-col>
   </ion-row>
-</ion-grid>
+</ion-grid> -->
+
+<ion-text>
+  <h1 translate class="ion-margin-start ion-margin-top">POKEMONS</h1>
+</ion-text>
+
+<ion-virtual-scroll
+  [items]="pokemons?.findAllPokemons?.items"
+  approxItemHeight="80px"
+>
+  <ion-item
+    *virtualItem="let pokemon"
+    [routerLink]="['/', 'pokemon-tabs', 'pokemon-detail', pokemon.id]"
+  >
+    <ion-avatar slot="start" class="border-radius-none">
+      <img [src]="createPokemonImageUrl(pokemon.pokedexId)" />
+    </ion-avatar>
+    <ion-label>
+      <h2>{{ pokemon.name | languageTranslate }}</h2>
+    </ion-label>
+    <ion-chip
+      [color]="type"
+      outline="true"
+      *ngFor="let type of pokemon.pokemonTypes"
+    >
+      <ion-icon [name]="type"></ion-icon>
+    </ion-chip>
+  </ion-item>
+</ion-virtual-scroll>
