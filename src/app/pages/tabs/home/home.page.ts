@@ -3,7 +3,7 @@ import { HOME_CARDS } from './shared/constants';
 import { IHomeCard } from './shared/interfaces';
 
 @Component({
-  selector: 'app-home',
+  selector: 'pks-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss']
 })

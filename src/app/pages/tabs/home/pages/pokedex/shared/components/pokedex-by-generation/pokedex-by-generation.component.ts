@@ -1,9 +1,9 @@
 import { Component, Input } from '@angular/core';
 import { Query } from '@core/graphql/generated';
-import { PokemonDisplayCommon } from '../../utils/pokemon-common';
+import { PokemonDisplayCommon } from '../../../../../../../../shared/utils/pokemon-common';
 
 @Component({
-  selector: 'app-pokedex-by-generation',
+  selector: 'pks-pokedex-by-generation',
   templateUrl: './pokedex-by-generation.component.html',
   styleUrls: ['./pokedex-by-generation.component.scss']
 })

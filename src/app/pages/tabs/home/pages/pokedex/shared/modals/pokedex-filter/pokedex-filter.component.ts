@@ -3,7 +3,7 @@ import { ModalController } from '@ionic/angular';
 import { IFilterChoice } from './interfaces/filter-choice.interface';
 
 @Component({
-  selector: 'app-pokedex-filter',
+  selector: 'pks-pokedex-filter',
   templateUrl: './pokedex-filter.component.html',
   styleUrls: ['./pokedex-filter.component.scss']
 })
@@ -34,12 +34,14 @@ export class PokedexFilterComponent {
 
   /**
    * Constructor
+   *
    * @param modalController
    */
   constructor(private modalController: ModalController) {}
 
   /**
    * Close the modal and sends the parent the selectedFilter
+   *
    * @param choice
    */
   selectChoice(choice: string): void {

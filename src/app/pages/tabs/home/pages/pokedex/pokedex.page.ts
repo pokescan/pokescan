@@ -16,7 +16,7 @@ import { PokedexFilterComponent } from './shared/modals/pokedex-filter/pokedex-f
 
 @UntilDestroy()
 @Component({
-  selector: 'app-pokedex',
+  selector: 'pks-pokedex',
   templateUrl: './pokedex.page.html',
   styleUrls: ['./pokedex.page.scss']
 })
@@ -60,7 +60,7 @@ export class PokedexPage implements OnInit {
     });
   }
 
-  private routeBySelectedChoice(): Observable<ApolloQueryResult<Query>> {
+  routeBySelectedChoice(): Observable<ApolloQueryResult<Query>> {
     switch (this.filterChoice) {
       case PokedexFilterEnum.GENERATION:
         return this.generationService.findAll();
@@ -77,8 +77,6 @@ export class PokedexPage implements OnInit {
    * @memberof PokedexPage
    */
   async openFilters(): Promise<void> {
-    const defaultChoices = [...POKEDEX_DISPLAY_CHOICES];
-
     const { selectedChoice }: IFilterOutput =
       (await this.modalService.openSwipeableModal<
         IFilterChoiceWrapper,

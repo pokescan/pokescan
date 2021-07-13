@@ -10,6 +10,7 @@ import { environment } from '@environments/environment';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { DEFAULT_LANGUAGE } from '@shared/constants';
 import { SharedModule } from '@shared/shared.module';
 import { Cloudinary } from 'cloudinary-core';
 import { NgxSpinnerModule } from 'ngx-spinner';
@@ -43,7 +44,7 @@ export const HttpLoaderFactory = (http: HttpClient): TranslateHttpLoader =>
         useFactory: HttpLoaderFactory,
         deps: [HttpClient]
       },
-      defaultLanguage: 'en'
+      defaultLanguage: DEFAULT_LANGUAGE
     }),
     NgxSpinnerModule,
     BrowserAnimationsModule
