@@ -1,0 +1,37 @@
+<ion-header class="ion-no-border" [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button
+        defaultHref="/tabs/home"
+        [text]="'BUTTONS.BACK' | translate"
+      ></ion-back-button>
+    </ion-buttons>
+    <ion-toolbar>
+      <ion-title color="primary" translate>TITLES.POKEDEX</ion-title>
+    </ion-toolbar>
+    <ion-buttons slot="end">
+      <ion-button (click)="openFilters();">
+        <ion-icon slot="icon-only" name="filter-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ng-container [ngSwitch]="filterChoice">
+    <app-pokedex-by-generation
+      *ngSwitchCase="'generation'"
+      [generations]="data"
+    ></app-pokedex-by-generation>
+
+    <app-pokedex-by-pokemon
+      *ngSwitchCase="'pokemon'"
+      [pokemons]="data"
+    ></app-pokedex-by-pokemon>
+
+    <app-pokedex-by-type
+      *ngSwitchCase="'type'"
+      [pokemonTypes]="data"
+    ></app-pokedex-by-type>
+  </ng-container>
+</ion-content>

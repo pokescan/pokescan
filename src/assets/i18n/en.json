@@ -1,3 +1,21 @@
 {
-  "HOME": "Home"
+  "HOME": "Home",
+  "BUTTONS": {
+    "BACK": "Back",
+    "CLOSE": "Close"
+  },
+  "GENERATION": {
+    "MAIN": "Generation",
+    "VARIABILIZED": "Generation {{order}}"
+  },
+  "LOADING": "Loading in progress...",
+  "MODAL": {
+    "FILTER": "Filters"
+  },
+  "POKEMON": "Pokemon",
+  "POKEMONS": "Pokemons",
+  "TITLES": {
+    "POKEDEX": "Pokedex"
+  },
+  "TYPE": "Type"
 }

@@ -31,8 +31,8 @@
                 "output": "./svg"
               },
               {
-                "glob": "**/*.svg",
-                "input": "src/assets/icon",
+                "glob": "**/custom-*.svg",
+                "input": "src/assets/icon-custom",
                 "output": "./svg"
               }
             ],
