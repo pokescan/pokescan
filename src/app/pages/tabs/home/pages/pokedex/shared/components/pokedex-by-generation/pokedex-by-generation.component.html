@@ -1,31 +1,40 @@
-<ion-grid [fixed]="true">
-  <ng-container
-    *ngFor="let generation of generations?.findAllGenerations?.items"
+<ion-text>
+  <h1
+    translate
+    [translateParams]="{ generation: generation.order }"
+    class="ion-no-margin"
   >
-    <ion-row>
-      <ion-col>
-        <ion-text>
-          <h2
-            translate
-            [translateParams]="{ order: generation?.order }"
-            class="ion-no-margin"
-          >
-            GENERATION.VARIABILIZE
-          </h2>
-        </ion-text>
-      </ion-col>
-    </ion-row>
-    <hr />
-    <ion-row>
-      <ion-col
-        *ngFor="let pokemon of generation?.pokemons"
-        size="3"
-        [routerLink]="['/', 'pokemon-tabs', 'pokemon-detail', pokemon.id]"
-      >
-        <cl-image
-          [public-id]="getPokemonImageUrl(pokemon.pokedexId)"
-        ></cl-image>
-      </ion-col>
-    </ion-row>
-  </ng-container>
-</ion-grid>
+    GENERATION.MAIN
+  </h1>
+</ion-text>
+
+<ion-virtual-scroll [items]="pokemons" approxItemHeight="80px">
+  <ion-item
+    *virtualItem="let pokemon"
+    [routerLink]="['/', 'pokemon-tabs', 'pokemon-detail', pokemon.id]"
+    detail="false"
+  >
+    <ion-thumbnail slot="start" class="border-radius-none">
+      <ion-img [src]="createPokemonImageUrl(pokemon.pokedexId)"></ion-img>
+    </ion-thumbnail>
+    <ion-label>
+      <h2>{{ pokemon.name | languageTranslate }}</h2>
+    </ion-label>
+    <ion-chip
+      [color]="type.name | languageTranslate: true | lowercase"
+      *ngFor="let type of pokemon.pokemonTypes"
+    >
+      <ion-icon
+        [name]="type.name | languageTranslate: true | lowercase"
+      ></ion-icon>
+    </ion-chip>
+  </ion-item>
+</ion-virtual-scroll>
+
+<ion-infinite-scroll threshold="100px" (ionInfinite)="loadData()">
+  <ion-infinite-scroll-content
+    loadingSpinner="bubbles"
+    loadingText="Loading more data..."
+  >
+  </ion-infinite-scroll-content>
+</ion-infinite-scroll>

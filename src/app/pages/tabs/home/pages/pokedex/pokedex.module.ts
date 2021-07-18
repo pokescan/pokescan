@@ -10,11 +10,10 @@ import { PokedexPage } from './pokedex.page';
 import { PokedexByGenerationComponent } from './shared/components/pokedex-by-generation/pokedex-by-generation.component';
 import { PokedexByPokemonComponent } from './shared/components/pokedex-by-pokemon/pokedex-by-pokemon.component';
 import { PokedexByTypeComponent } from './shared/components/pokedex-by-type/pokedex-by-type.component';
-import { PokedexFilterComponent } from './shared/modals/pokedex-filter/pokedex-filter.component';
+import { PokedexFilterPageModule } from './shared/modals/pokedex-filter/pokedex-filter.module';
 
 const components: Type<any>[] = [
   PokedexPage,
-  PokedexFilterComponent,
   PokedexByGenerationComponent,
   PokedexByPokemonComponent,
   PokedexByTypeComponent
@@ -28,7 +27,8 @@ const components: Type<any>[] = [
     PokedexPageRoutingModule,
     TranslateModule,
     SharedModule,
-    CloudinaryModule
+    CloudinaryModule,
+    PokedexFilterPageModule
   ],
   declarations: [...components]
 })

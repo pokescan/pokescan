@@ -1,6 +1,8 @@
 export interface IFilterChoice {
-  label: string;
-  value: string;
-  icon: string;
-  isSelected: boolean;
+  label?: string;
+  value?: any;
+  icon?: string;
+  isSelected?: boolean;
+  hasSubchoices?: boolean;
+  subChoices?: IFilterChoice[];
 }

@@ -17,11 +17,14 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ng-container [ngSwitch]="filterChoice">
+<ion-content [fullscreen]="true" class="ion-padding">
+  <ng-container
+    [ngSwitch]="parentChoice"
+    *ngIf="(loader.pokemons.inProgress$ | async) === false"
+  >
     <pks-pokedex-by-generation
       *ngSwitchCase="'generation'"
-      [generations]="data"
+      [generation]="data"
     ></pks-pokedex-by-generation>
 
     <pks-pokedex-by-pokemon

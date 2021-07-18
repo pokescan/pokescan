@@ -5,7 +5,7 @@
     "CLOSE": "Fermer"
   },
   "GENERATION": {
-    "MAIN": "Génération",
+    "MAIN": "Génération {{generation}}",
     "VARIABILIZE": "Génération {{order}}"
   },
   "LOADING": "Chargement en cours...",
@@ -17,5 +17,5 @@
   "TITLES": {
     "POKEDEX": "Pokédex"
   },
-  "TYPE": "Type"
+  "TYPE": "Type {{type}}"
 }

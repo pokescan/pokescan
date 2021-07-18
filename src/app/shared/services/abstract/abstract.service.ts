@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export abstract class AbstractService<C, E> {
-  constructor(private apollo: Apollo) {}
+  constructor(protected apollo: Apollo) {}
 
   findAll(offset = 0, limit = 10): Observable<ApolloQueryResult<Query>> {
     return this.apollo.query<Query>({

@@ -1,0 +1,60 @@
+<ion-header translucent>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button
+        *ngIf="!isFirstModal"
+        [text]="'BUTTONS.BACK' | translate"
+      ></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ title | translate }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismissModal()" translate>BUTTONS.CLOSE</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+  <ion-list>
+    <ng-container *ngFor="let choice of choices">
+      <ng-container
+        *ngIf="
+          choice.hasSubchoices;
+          then subchoiceTemplate;
+          else normalTemplate
+        "
+      ></ng-container>
+
+      <ng-template #normalTemplate>
+        <ion-item (click)="selectChoice(choice.value)">
+          <ion-label>
+            <h2>{{ choice.label }}</h2>
+          </ion-label>
+          <ion-checkbox
+            slot="end"
+            [(ngModel)]="choice.isSelected"
+          ></ion-checkbox>
+        </ion-item>
+      </ng-template>
+
+      <ng-template #subchoiceTemplate>
+        <ion-nav-link
+          router-direction="forward"
+          [component]="detailComponent"
+          [componentProps]="{
+            isFirstModal: false,
+            choices: choice.subChoices,
+            title: choice.label,
+            defaultChoice: defaultChoice,
+            choice: choice.value
+          }"
+        >
+          <ion-item detail="true">
+            <ion-label>
+              <h2>{{ choice.label | translate }}</h2>
+            </ion-label>
+          </ion-item>
+        </ion-nav-link>
+      </ng-template>
+    </ng-container>
+  </ion-list>
+</ion-content>

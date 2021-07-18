@@ -21,3 +21,6 @@ export const POKEDEX_DISPLAY_CHOICES: IFilterChoice[] = [
     isSelected: true
   }
 ];
+
+export const DEFAULT_OFFSET = 0;
+export const DEFAULT_LIMIT = 10;

@@ -79,7 +79,8 @@ module.exports = {
             prefix: 'app',
             style: 'camelCase'
           }
-        ]
+        ],
+        '@angular-eslint/no-input-rename': 0
       }
     },
     {

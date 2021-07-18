@@ -1,12 +1,61 @@
-import { Component, Input } from '@angular/core';
-import { Query } from '@core/graphql/generated';
-import { PokemonDisplayCommon } from '../../../../../../../../shared/utils/pokemon-common';
+import {
+  Component,
+  Input,
+  OnChanges,
+  SimpleChanges,
+  ViewChild
+} from '@angular/core';
+import { Cloudinary } from '@cloudinary/angular-5.x';
+import { GenerationDto, PokemonDto, Query } from '@core/graphql/generated';
+import { SubjectService } from '@core/services/subject/subject.service';
+import { IonInfiniteScroll } from '@ionic/angular';
+import { PokemonDisplayCommon } from '@shared/utils';
 
 @Component({
   selector: 'pks-pokedex-by-generation',
   templateUrl: './pokedex-by-generation.component.html',
   styleUrls: ['./pokedex-by-generation.component.scss']
 })
-export class PokedexByGenerationComponent extends PokemonDisplayCommon {
-  @Input() generations: Query;
+export class PokedexByGenerationComponent
+  extends PokemonDisplayCommon
+  implements OnChanges {
+  @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
+
+  @Input('generation') generationInput: Query;
+
+  generation: GenerationDto;
+  pokemons: PokemonDto[] = [];
+
+  /**
+   * Default constructor
+   */
+  constructor(
+    private cloudinary: Cloudinary,
+    private subjectService: SubjectService
+  ) {
+    super();
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    const currentValue = changes?.generationInput?.currentValue;
+
+    if (currentValue) {
+      const generation = currentValue?.generation;
+
+      this.pokemons.push(...generation.pokemons);
+      this.generation = generation;
+
+      this.infiniteScroll?.complete();
+    }
+  }
+
+  createPokemonImageUrl(pokedexId: string): string {
+    return this.cloudinary.cloudinaryInstance.url(`pokemon/${pokedexId}.gif`);
+  }
+
+  loadData(): void {
+    // this.subjectService.pokemons$.next({
+    //   offset: this.metadata.offset + DEFAULT_LIMIT
+    // });
+  }
 }
