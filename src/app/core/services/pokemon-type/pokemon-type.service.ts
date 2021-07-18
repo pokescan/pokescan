@@ -1,10 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ApolloQueryResult } from '@apollo/client/core';
 import { CreatePokemonTypeDto, Query } from '@core/graphql/generated';
-import {
-  DEFAULT_LIMIT,
-  DEFAULT_OFFSET
-} from '@pages/tabs/home/pages/pokedex/shared/constants';
+import { DEFAULT_LIMIT, DEFAULT_OFFSET } from '@shared/constants';
 import { AbstractService } from '@shared/services/abstract/abstract.service';
 import { Apollo, gql } from 'apollo-angular';
 import { DocumentNode } from 'graphql';

@@ -9,8 +9,8 @@ import { Cloudinary } from '@cloudinary/angular-5.x';
 import { PokemonDto, PokemonMetadata, Query } from '@core/graphql/generated';
 import { SubjectService } from '@core/services/subject/subject.service';
 import { IonInfiniteScroll } from '@ionic/angular';
+import { DEFAULT_LIMIT } from '@shared/constants';
 import { PokemonDisplayCommon } from '@shared/utils';
-import { DEFAULT_LIMIT } from '../../constants';
 
 @Component({
   selector: 'pks-pokedex-by-pokemon',

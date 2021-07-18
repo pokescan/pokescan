@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ApolloQueryResult, FetchResult } from '@apollo/client/core';
 import { Mutation, Query } from '@core/graphql/generated';
+import { DEFAULT_LIMIT, DEFAULT_OFFSET } from '@shared/constants';
 import { Apollo } from 'apollo-angular';
 import { DocumentNode } from 'graphql';
 import { Observable } from 'rxjs';
@@ -11,7 +12,10 @@ import { Observable } from 'rxjs';
 export abstract class AbstractService<C, E> {
   constructor(protected apollo: Apollo) {}
 
-  findAll(offset = 0, limit = 10): Observable<ApolloQueryResult<Query>> {
+  findAll(
+    offset = DEFAULT_OFFSET,
+    limit = DEFAULT_LIMIT
+  ): Observable<ApolloQueryResult<Query>> {
     return this.apollo.query<Query>({
       query: this.findAllQuery(),
       variables: {
