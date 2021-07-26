@@ -1,8 +1,11 @@
 import { Injectable } from '@angular/core';
-import { CreatePokemonTypeDto } from '@core/graphql/generated';
+import { ApolloQueryResult } from '@apollo/client/core';
+import { CreatePokemonTypeDto, Query } from '@core/graphql/generated';
+import { DEFAULT_LIMIT, DEFAULT_OFFSET } from '@shared/constants';
 import { AbstractService } from '@shared/services/abstract/abstract.service';
 import { Apollo, gql } from 'apollo-angular';
 import { DocumentNode } from 'graphql';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +16,34 @@ export class PokemonTypeService extends AbstractService<
 > {
   constructor(apollo: Apollo) {
     super(apollo);
+  }
+
+  findTypes(
+    offset = DEFAULT_OFFSET,
+    limit = DEFAULT_LIMIT
+  ): Observable<ApolloQueryResult<Query>> {
+    return this.apollo.query<Query>({
+      query: gql`
+        query($offset: Int = 0, $limit: Int = 10) {
+          findAllPokemonTypes(limit: $limit, offset: $offset) {
+            items {
+              id
+              name {
+                key
+                value
+              }
+            }
+            metadata {
+              totalCount
+              hasNextPage
+              limit
+              offset
+            }
+          }
+        }
+      `,
+      variables: { offset, limit }
+    });
   }
 
   protected findAllQuery(): DocumentNode {

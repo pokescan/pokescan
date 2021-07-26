@@ -20,11 +20,10 @@ export class ModalService {
       showBackdrop: true
     });
   }
-  async openSwipeableModal<T, R>(
+  async openSwipeableModal<R>(
     component: Type<any>,
     routerOutletElement: any,
-    title: string,
-    data?: T
+    data?: Record<string, unknown>
   ): Promise<R> {
     this.checkExistingModal();
 
@@ -36,8 +35,7 @@ export class ModalService {
       cssClass: 'half-opened-modal',
       presentingElement: routerOutletElement,
       componentProps: {
-        ...data,
-        title
+        ...data
       }
     });
   }

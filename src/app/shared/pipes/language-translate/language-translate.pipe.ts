@@ -1,6 +1,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { TranslatableObjectOutput } from '@core/graphql/generated';
 import { TranslateService } from '@ngx-translate/core';
+import { extractCurrentLanguageValue } from '@shared/utils';
 
 @Pipe({
   name: 'languageTranslate'
@@ -11,13 +12,15 @@ export class LanguageTranslatePipe implements PipeTransform {
    */
   constructor(private translateService: TranslateService) {}
 
-  transform(values: TranslatableObjectOutput[], ...args: unknown[]): string {
-    const language = this.translateService.currentLang;
-    const defaultLanguage = this.translateService.defaultLang;
-
-    const v = values?.find(to => language === to?.key);
-    const defaultValue = values?.find(to => defaultLanguage === to?.key);
-
-    return v?.value || defaultValue?.value || 'NO CORRESPONDING VALUE';
+  transform(
+    values: TranslatableObjectOutput[],
+    defaultLanguageInput: boolean = false
+  ): string {
+    return extractCurrentLanguageValue(
+      values,
+      this.translateService.currentLang,
+      this.translateService.defaultLang,
+      defaultLanguageInput
+    );
   }
 }

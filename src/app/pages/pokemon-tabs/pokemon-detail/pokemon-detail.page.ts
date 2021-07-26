@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Cloudinary } from '@cloudinary/angular-5.x';
 import { PokemonDto } from '@core/graphql/generated';
 import { PokemonService } from '@core/services/pokemon/pokemon.service';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { DEFAULT_LANGUAGE } from '@shared/constants';
-import { PokemonDisplayCommon } from '@shared/utils/pokemon-common';
+import { PokemonDisplayCommon } from '@shared/utils';
 
 @UntilDestroy()
 @Component({
@@ -17,9 +17,10 @@ export class PokemonDetailPage extends PokemonDisplayCommon implements OnInit {
 
   constructor(
     private pokemonService: PokemonService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    cloudinary: Cloudinary
   ) {
-    super();
+    super(cloudinary);
   }
 
   ngOnInit(): void {
@@ -31,16 +32,5 @@ export class PokemonDetailPage extends PokemonDisplayCommon implements OnInit {
       .subscribe(({ data: { pokemon } }) => {
         this.pokemon = pokemon;
       });
-  }
-
-  getClassAccordingToPokemonType(): string {
-    const englishValue = this.findPokemonTypeAccordingToDefaultLanguage();
-    return `ion-color-${englishValue}`;
-  }
-
-  findPokemonTypeAccordingToDefaultLanguage(): string {
-    return this.pokemon.pokemonTypes[0].name
-      .find(t => t.key === DEFAULT_LANGUAGE)
-      .value?.toLowerCase();
   }
 }

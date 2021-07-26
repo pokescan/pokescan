@@ -10,6 +10,6 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class AppComponent {
   constructor(translateService: TranslateService) {
-    translateService.setDefaultLang(navigator.language.substring(0, 2));
+    translateService.use(navigator.language.substring(0, 2));
   }
 }
