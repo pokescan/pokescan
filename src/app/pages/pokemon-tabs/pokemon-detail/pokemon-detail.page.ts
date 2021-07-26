@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Cloudinary } from '@cloudinary/angular-5.x';
 import { PokemonDto } from '@core/graphql/generated';
 import { PokemonService } from '@core/services/pokemon/pokemon.service';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
@@ -16,9 +17,10 @@ export class PokemonDetailPage extends PokemonDisplayCommon implements OnInit {
 
   constructor(
     private pokemonService: PokemonService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    cloudinary: Cloudinary
   ) {
-    super();
+    super(cloudinary);
   }
 
   ngOnInit(): void {

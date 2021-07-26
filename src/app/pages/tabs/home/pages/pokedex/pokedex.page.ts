@@ -14,7 +14,7 @@ import { IPokemonSearchEvent } from '@shared/interfaces/pokemon-search-event.int
 import { BaseModalComponent } from '@shared/modals/base-modal/base-modal.component';
 import { ModalService } from '@shared/services/modal/modal.service';
 import { extractCurrentLanguageValue } from '@shared/utils';
-import { forkJoin, Observable, of } from 'rxjs';
+import { forkJoin, of } from 'rxjs';
 import { catchError, filter } from 'rxjs/operators';
 import { PokedexFilterEnum } from './shared/enums/pokedex-filter.enum';
 import { IFilterChoice } from './shared/modals/pokedex-filter/interfaces/filter-choice.interface';
@@ -47,14 +47,6 @@ export class PokedexPage implements OnInit {
    * @memberof PokedexPage
    */
   filterChoice = '';
-
-  /**
-   * Variable that contains all the pokemons from the API
-   *
-   * @type {Query}
-   * @memberof PokedexPage
-   */
-  data: Query;
 
   /**
    * All pokemon types from API (only name is stored in this component)
@@ -106,13 +98,8 @@ export class PokedexPage implements OnInit {
   ngOnInit(): void {
     // this.initPage();
 
-    forkJoin<
-      ApolloQueryResult<Query>,
-      ApolloQueryResult<Query>,
-      ApolloQueryResult<Query>
-    >([
+    forkJoin<ApolloQueryResult<Query>, ApolloQueryResult<Query>>([
       this.generationService.findGenerations().pipe(catchError(() => of({}))),
-      this.pokemonService.findAll().pipe(catchError(() => of({}))),
       this.pokemonTypeService.findTypes().pipe(catchError(() => of({})))
     ])
       .pipe(untilDestroyed(this), this.loader.pokemons.track())
@@ -121,14 +108,12 @@ export class PokedexPage implements OnInit {
           {
             data: { findAllGenerations: generations }
           },
-          { data: pokemons },
           {
             data: { findAllPokemonTypes: types }
           }
         ]) => {
           this.generations = generations.items;
           this.types = types.items;
-          this.data = pokemons;
         }
       );
 
@@ -139,31 +124,7 @@ export class PokedexPage implements OnInit {
       )
       .subscribe(({ offset }: IPokemonSearchEvent) => {
         this.offset = offset;
-        this.initPage();
       });
-  }
-
-  initPage(): void {
-    const routeToCall: Observable<
-      ApolloQueryResult<Query>
-    > = this.routeBySelectedChoice();
-
-    routeToCall
-      .pipe(untilDestroyed(this), this.loader.pokemons.track())
-      .subscribe(({ data }) => {
-        this.data = data;
-      });
-  }
-
-  routeBySelectedChoice(): Observable<ApolloQueryResult<Query>> {
-    switch (this.parentChoice) {
-      case PokedexFilterEnum.GENERATION:
-        return this.generationService.find(this.filterChoice);
-      case PokedexFilterEnum.TYPE:
-        return this.pokemonTypeService.find(this.filterChoice);
-      default:
-        return this.pokemonService.findAll(this.offset, this.limit);
-    }
   }
 
   /**
@@ -188,8 +149,6 @@ export class PokedexPage implements OnInit {
 
     this.parentChoice = parentChoice || this.parentChoice;
     this.filterChoice = selectedChoice || this.filterChoice;
-
-    this.initPage();
   }
 
   buildFilterModalChoices(): IFilterChoice[] {

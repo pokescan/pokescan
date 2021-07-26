@@ -1,0 +1,28 @@
+<!-- <ion-virtual-scroll [items]="items" [approxItemHeight]="itemHeight">
+  <ng-container *virtualItem="let item">
+    <div
+      [ngTemplateOutlet]="templateName"
+      [ngTemplateOutletContext]="{ item: item }"
+    ></div>
+  </ng-container>
+</ion-virtual-scroll>
+
+<ion-infinite-scroll
+  [threshold]="scrollThreshold"
+  (ionInfinite)="infiniteScroll()"
+>
+  <ion-infinite-scroll-content
+    loadingSpinner="bubbles"
+    [loadingText]="'LOADING' | translate"
+  >
+  </ion-infinite-scroll-content>
+</ion-infinite-scroll> -->
+
+<cdk-virtual-scroll-viewport [itemSize]="itemSize">
+  <ng-container *cdkVirtualFor="let item of dataSource">
+    <ng-container
+      [ngTemplateOutlet]="templateName"
+      [ngTemplateOutletContext]="{ item: item }"
+    ></ng-container>
+  </ng-container>
+</cdk-virtual-scroll-viewport>

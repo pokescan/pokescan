@@ -22,19 +22,16 @@
     [ngSwitch]="parentChoice"
     *ngIf="(loader.pokemons.inProgress$ | async) === false"
   >
-    <pks-pokedex-by-generation
+    <!-- <pks-pokedex-by-generation
       *ngSwitchCase="'generation'"
-      [generation]="data"
-    ></pks-pokedex-by-generation>
+      [generation]="filterChoice"
+    ></pks-pokedex-by-generation> -->
 
-    <pks-pokedex-by-pokemon
-      *ngSwitchCase="'pokemon'"
-      [pokemons]="data"
-    ></pks-pokedex-by-pokemon>
+    <pks-pokedex-by-pokemon *ngSwitchCase="'pokemon'"></pks-pokedex-by-pokemon>
 
-    <pks-pokedex-by-type
+    <!-- <pks-pokedex-by-type
       *ngSwitchCase="'type'"
-      [pokemonTypes]="data"
-    ></pks-pokedex-by-type>
+      [pokemonType]="filterChoice"
+    ></pks-pokedex-by-type> -->
   </ng-container>
 </ion-content>

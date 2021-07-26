@@ -1,59 +1,55 @@
 import {
+  ChangeDetectionStrategy,
   Component,
-  Input,
   OnChanges,
-  SimpleChanges,
-  ViewChild
+  OnInit,
+  SimpleChanges
 } from '@angular/core';
 import { Cloudinary } from '@cloudinary/angular-5.x';
-import { PokemonDto, PokemonMetadata, Query } from '@core/graphql/generated';
+import { PokemonService } from '@core/services/pokemon/pokemon.service';
 import { SubjectService } from '@core/services/subject/subject.service';
-import { IonInfiniteScroll } from '@ionic/angular';
-import { DEFAULT_LIMIT } from '@shared/constants';
 import { PokemonDisplayCommon } from '@shared/utils';
+import { PokemonDataSource } from '../../models/pokemon-data-source';
 
 @Component({
   selector: 'pks-pokedex-by-pokemon',
   templateUrl: './pokedex-by-pokemon.component.html',
-  styleUrls: ['./pokedex-by-pokemon.component.scss']
+  styleUrls: ['./pokedex-by-pokemon.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PokedexByPokemonComponent
   extends PokemonDisplayCommon
-  implements OnChanges {
-  @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
-
-  @Input('pokemons') pokemonsInput: Query;
-
-  metadata: PokemonMetadata;
-  pokemons: PokemonDto[] = [];
+  implements OnInit, OnChanges {
+  dataSource: PokemonDataSource;
 
   constructor(
-    private cloudinary: Cloudinary,
-    private subjectService: SubjectService
+    cloudinary: Cloudinary,
+    private subjectService: SubjectService,
+    private pokemonService: PokemonService
   ) {
-    super();
+    super(cloudinary);
+  }
+
+  ngOnInit(): void {
+    this.dataSource = new PokemonDataSource(
+      this.pokemonService,
+      'findAllPokemons'
+    );
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    const currentValue = changes?.pokemonsInput?.currentValue;
-
-    if (currentValue) {
-      const { metadata, items } = this.pokemonsInput.findAllPokemons;
-
-      this.pokemons.push(...items);
-      this.metadata = { ...metadata };
-
-      this.infiniteScroll?.complete();
-    }
+    // const currentValue = changes?.pokemonsInput?.currentValue;
+    // if (currentValue) {
+    //   const { metadata, items } = this.pokemonsInput.findAllPokemons;
+    //   this.pokemons.push(...items);
+    //   this.metadata = { ...metadata };
+    //   this.infiniteScroll?.complete();
+    // }
   }
 
-  createPokemonImageUrl(pokedexId: string): string {
-    return this.cloudinary.cloudinaryInstance.url(`pokemon/${pokedexId}.gif`);
-  }
-
-  loadData(): void {
-    this.subjectService.pokemons$.next({
-      offset: this.metadata.offset + DEFAULT_LIMIT
-    });
-  }
+  // loadData(): void {
+  //   this.subjectService.pokemons$.next({
+  //     offset: this.metadata.offset + DEFAULT_LIMIT
+  //   });
+  // }
 }

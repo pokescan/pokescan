@@ -2,33 +2,54 @@
   <h1 translate class="ion-no-margin">POKEMONS</h1>
 </ion-text>
 
-<ion-virtual-scroll [items]="pokemons" approxItemHeight="80px">
+<!-- <ng-template #pokemonsTemplate let-item="item">
   <ion-item
-    *virtualItem="let pokemon"
-    [routerLink]="['/', 'pokemon-tabs', 'pokemon-detail', pokemon.id]"
+    [routerLink]="['/', 'pokemon-tabs', 'pokemon-detail', item.id]"
     detail="false"
   >
     <ion-thumbnail slot="start" class="border-radius-none">
-      <ion-img [src]="createPokemonImageUrl(pokemon.pokedexId)"></ion-img>
+      <ion-img [src]="createPokemonImageUrl(item.pokedexId)"></ion-img>
     </ion-thumbnail>
     <ion-label>
-      <h2>{{ pokemon.name | languageTranslate }}</h2>
+      <h2>{{ item.name | languageTranslate }}</h2>
     </ion-label>
     <ion-chip
       [color]="type.name | languageTranslate: true | lowercase"
-      *ngFor="let type of pokemon.pokemonTypes"
+      *ngFor="let type of item.pokemonTypes"
     >
       <ion-icon
         [name]="type.name | languageTranslate: true | lowercase"
       ></ion-icon>
     </ion-chip>
   </ion-item>
-</ion-virtual-scroll>
+</ng-template>
 
-<ion-infinite-scroll threshold="100px" (ionInfinite)="loadData()">
-  <ion-infinite-scroll-content
-    loadingSpinner="bubbles"
-    loadingText="Loading more data..."
-  >
-  </ion-infinite-scroll-content>
-</ion-infinite-scroll>
+<pks-virtual-infinite-scroll
+  [items]="pokemons"
+  (onScrollEvent)="loadData()"
+  [templateName]="pokemonsTemplate"
+></pks-virtual-infinite-scroll> -->
+
+<cdk-virtual-scroll-viewport itemSize="60" class="full-height">
+  <ng-container *cdkVirtualFor="let item of dataSource">
+    <ion-item
+      [routerLink]="['/', 'pokemon-tabs', 'pokemon-detail', item.id]"
+      detail="false"
+    >
+      <ion-thumbnail slot="start" class="border-radius-none">
+        <ion-img [src]="createPokemonImageUrl(item.pokedexId)"></ion-img>
+      </ion-thumbnail>
+      <ion-label>
+        <h2>{{ item.name | languageTranslate }}</h2>
+      </ion-label>
+      <ion-chip
+        [color]="type.name | languageTranslate: true | lowercase"
+        *ngFor="let type of item.pokemonTypes"
+      >
+        <ion-icon
+          [name]="type.name | languageTranslate: true | lowercase"
+        ></ion-icon>
+      </ion-chip>
+    </ion-item>
+  </ng-container>
+</cdk-virtual-scroll-viewport>

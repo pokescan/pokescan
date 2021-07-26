@@ -1,3 +1,4 @@
+import { ScrollingModule } from '@angular/cdk/scrolling';
 import { CommonModule } from '@angular/common';
 import { NgModule, Type } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -28,7 +29,8 @@ const components: Type<any>[] = [
     TranslateModule,
     SharedModule,
     CloudinaryModule,
-    PokedexFilterPageModule
+    PokedexFilterPageModule,
+    ScrollingModule
   ],
   declarations: [...components]
 })

@@ -29,11 +29,8 @@ export class PokedexByGenerationComponent
   /**
    * Default constructor
    */
-  constructor(
-    private cloudinary: Cloudinary,
-    private subjectService: SubjectService
-  ) {
-    super();
+  constructor(cloudinary: Cloudinary, private subjectService: SubjectService) {
+    super(cloudinary);
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -47,10 +44,6 @@ export class PokedexByGenerationComponent
 
       this.infiniteScroll?.complete();
     }
-  }
-
-  createPokemonImageUrl(pokedexId: string): string {
-    return this.cloudinary.cloudinaryInstance.url(`pokemon/${pokedexId}.gif`);
   }
 
   loadData(): void {

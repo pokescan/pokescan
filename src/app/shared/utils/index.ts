@@ -1,9 +1,12 @@
+import { Cloudinary } from '@cloudinary/angular-5.x';
 import { TranslatableObjectOutput } from '@core/graphql/generated';
 import { DEFAULT_LANGUAGE } from '@shared/constants';
 
 export class PokemonDisplayCommon {
-  getPokemonImageUrl(pokedexId: number): string {
-    return `pokemon/${pokedexId}.gif`;
+  constructor(private cloudinary: Cloudinary) {}
+
+  createPokemonImageUrl(pokedexId: string): string {
+    return this.cloudinary.cloudinaryInstance.url(`pokemon/${pokedexId}.gif`);
   }
 }
 
